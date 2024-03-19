@@ -1,15 +1,15 @@
 package scenarios;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import pages.TractiveLoginPage;
+import pages.LoginPage;
+import pages.SettingsPage;
 
 import java.util.concurrent.TimeUnit;
 
@@ -36,10 +36,13 @@ public class Authentication  {
 
   @Test
   public void testLogin() throws InterruptedException {
-    TractiveLoginPage tractiveLoginPage = new TractiveLoginPage(webDriver);
-    tractiveLoginPage.acceptCookies();
-    tractiveLoginPage.login("ana2@test.tractive.com","Shirou123!");
+    LoginPage loginPage = new LoginPage(webDriver);
+    loginPage.acceptCookies();
+    SettingsPage settingsPage = loginPage
+          .login("qa.interview@test.tractive.com","123456789");
     Thread.sleep(5000);
+    Assert.assertTrue(settingsPage.isCorrectlyDisplayed(),
+          "Expected to land on the settings page after login");
   }
 
 }

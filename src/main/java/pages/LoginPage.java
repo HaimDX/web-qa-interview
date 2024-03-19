@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class TractiveLoginPage {
+public class LoginPage {
 
   private WebDriver webDriver;
 
@@ -15,14 +15,15 @@ public class TractiveLoginPage {
 
   private By cookiesConsentButton = By.className("cookie-consent-accept");
 
-  public TractiveLoginPage(WebDriver webDriver){
+  public LoginPage(WebDriver webDriver){
     this.webDriver = webDriver;
   }
 
-  public void login(String email, String password){
+  public SettingsPage login(String email, String password){
     webDriver.findElement(emailField).sendKeys(email);
     webDriver.findElement(passwordField).sendKeys(password);
     webDriver.findElement(signinButton).click();
+    return new SettingsPage(webDriver);
   }
 
   public void acceptCookies(){

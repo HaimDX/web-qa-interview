@@ -9,9 +9,9 @@ public class LoginPage {
 
   private By emailField = By.cssSelector("input[ng-model='form.email']");
 
-  private By passwordField = By.cssSelector("input[ng-model='form.pwd']");
+  private By passwordField;
 
-  private By signinButton = By.cssSelector("button[class='tcommon-button tcommon-button--cta']");
+  private By signinButton;
 
   private By cookiesConsentButton = By.className("cookie-consent-accept");
 
@@ -21,9 +21,6 @@ public class LoginPage {
 
   public SettingsPage login(String email, String password){
     webDriver.findElement(emailField).sendKeys(email);
-    webDriver.findElement(passwordField).sendKeys(password);
-    webDriver.findElement(signinButton).click();
-    return new SettingsPage(webDriver);
   }
 
   public void acceptCookies(){

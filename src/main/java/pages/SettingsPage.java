@@ -7,7 +7,7 @@ public class SettingsPage {
 
   private WebDriver webDriver;
 
-  private By userProfileTile = By.cssSelector("tcommon-tile[ui-sref='^.userProfile.profile']");
+  private By userProfileTile;
 
   public SettingsPage(WebDriver webDriver){
     this.webDriver = webDriver;
